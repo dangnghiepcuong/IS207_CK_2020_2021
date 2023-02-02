@@ -8,8 +8,7 @@ $(document).ready(function(){
             data: { so: so },
             dataType: 'json',
             success: function(data){
-                $('#ten').val(data.ten)
-                $('#ten').attr('name', data.ma)
+                $('#ten').val(data)
             }
         })
     })
