@@ -1,22 +1,32 @@
 $(document).ready(function () {
-    $.ajax({
-        cache: false,
-        url: 'DSBD.php',
-        success: function (data) {
-            $('#so').html(data)
+    $('#nhan').change(function(){
+        nhan = $('#nhan').val();
 
-            so = $('#so').find('option:selected').text()
-            $.ajax({
-                cache: false,
-                url: 'Ngay_Nhan.php',
-                type: 'POST',
-                data: { so: so },
-                success: function (data) {
-                    $('#nhan').val(data)
-                }
-            })
-        }
+        $.ajax({
+            cache: false,
+            url: 'DSBD.php',
+            type: 'POST',
+            data: { nhan: nhan },
+            success: function (data) {
+                $('#so').html(data)
+
+                so = $('#so').find('option:selected').text()
+                nhan = $('#nhan').val();
+
+                $.ajax({
+                    cache: false,
+                    url: 'Cong_Viec.php',
+                    type: 'POST',
+                    data: { so: so, nhan: nhan },
+                    success: function (data) {
+                        $('#cong-viec').append(data)
+                        $('#cong-viec').append(data)
+                    }
+                })
+            }
+        })
     })
+    
 
     var TinhTien = function(){
         ThanhTien = 0

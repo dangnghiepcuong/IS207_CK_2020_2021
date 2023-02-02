@@ -11,12 +11,14 @@ if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
 
-$stmt = $conn->prepare("select NgayNhan from BAODUONG where SoXe = ?");
-$stmt->bind_param("s", $_POST['so']);
+$stmt = $conn->prepare("select TenCV, DonGia from CONGVIEC CV, CT_BD CT, BAODUONG BD 
+where CT.MaBD = BD.MaBD and CV.MaCV = CT.MaCV and SoXe = ? and NgayNhan = ?");
+$stmt->bind_param("ss", $_POST['so'], $_POST['nhan']);
 $stmt->execute();
 $result = $stmt->get_result();
 while ($row = $result->fetch_assoc())
 {
-    echo $row['NgayNhan'];
+  echo '<tr><td>' . $row['TenCV'] . $result->num_rows . '</td><td>' . $row['DonGia'] . '</td>
+    <td><button class="del">Xóa</button></td></tr>';
 }
 ?>

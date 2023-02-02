@@ -3,3 +3,11 @@ create table XE(SOXE varchar(10), HangXe varchar(50), NamSX int(4), MaKH varchar
 create table BAODUONG(MaBD varchar(5) PRIMARY KEY, NgayNhan varchar(10), NgayTra varchar(10), SoKM float(7,1), NoiDung varchar(200), SoXe varchar(10), ThanhTien int(8), FOREIGN KEY (SoXE) REFERENCES XE(SoXe));
 CREATE TABLE CONGVIEC (MaCV varchar(5) PRIMARY KEY, TenCV varchar(100), DonGia int(8));
 CREATE TABLE CT_BD(MaBD varchar(5), MaCV varchar(5), FOREIGN KEY (MaBD) REFERENCES BAODUONG(MaBD), FOREIGN KEY (MaCV) REFERENCES CONGVIEC(MaCV));
+
+insert into CONGVIEC values('CV01', 'Thay nhớt', 200000);
+insert into CONGVIEC values('CV02', 'Thay thắng', 200000);
+insert into CONGVIEC values('CV03', 'Kiểm tra vỏ', 100000);
+
+insert into CT_BD values('BD001', 'CV01');
+insert into CT_BD values('BD001', 'CV02');
+insert into CT_BD values('BD001', 'CV03');

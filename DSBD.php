@@ -11,7 +11,8 @@ if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
 
-$stmt = $conn->prepare("select SoXe, NgayNhan from BAODUONG");
+$stmt = $conn->prepare("select SoXe from BAODUONG where NgayNhan = ?");
+$stmt->bind_param('s', $_POST['nhan']);
 $stmt->execute();
 $result = $stmt->get_result();
 
