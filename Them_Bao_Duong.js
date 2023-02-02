@@ -6,7 +6,6 @@ $(document).ready(function(){
             url: 'KH.php',
             type: 'POST',
             data: { so: so },
-            dataType: 'json',
             success: function(data){
                 $('#ten').val(data)
             }

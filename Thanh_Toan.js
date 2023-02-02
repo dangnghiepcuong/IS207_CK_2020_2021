@@ -1,4 +1,21 @@
 $(document).ready(function () {
+    var CongViec = function(){
+        so = $('#so').find('option:selected').text()
+        nhan = $('#nhan').val();
+
+        $.ajax({
+            cache: false,
+            url: 'Cong_Viec.php',
+            type: 'POST',
+            data: { so: so, nhan: nhan },
+            success: function (data) {
+                firstRow = $('#cong-viec').find('tr:first')
+                $('#cong-viec').html(firstRow)
+                $('#cong-viec').append(data)
+            }
+        })
+    }
+
     $('#nhan').change(function(){
         nhan = $('#nhan').val();
 
@@ -9,24 +26,14 @@ $(document).ready(function () {
             data: { nhan: nhan },
             success: function (data) {
                 $('#so').html(data)
-
-                so = $('#so').find('option:selected').text()
-                nhan = $('#nhan').val();
-
-                $.ajax({
-                    cache: false,
-                    url: 'Cong_Viec.php',
-                    type: 'POST',
-                    data: { so: so, nhan: nhan },
-                    success: function (data) {
-                        $('#cong-viec').append(data)
-                        $('#cong-viec').append(data)
-                    }
-                })
+                CongViec()
             }
         })
     })
     
+    $('#so').change(function(){
+        CongViec()
+    })
 
     var TinhTien = function(){
         ThanhTien = 0

@@ -10,6 +10,8 @@ $(document).ready(function(){
             type: 'POST',
             data: { lan: lan },
             success: function(data){
+                firstRow = $('table').find('tr:first')
+                $('table').html(firstRow)
                 $('table').append(data)
             }
         })
