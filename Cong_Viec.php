@@ -18,7 +18,7 @@ $stmt->execute();
 $result = $stmt->get_result();
 while ($row = $result->fetch_assoc())
 {
-  echo '<tr><td>' . $row['TenCV'] . '</td><td>' . $row['DonGia'] . '</td>
+  echo '<tr><td>' . $row['TenCV'] . '</td><td class="don-gia">' . $row['DonGia'] . '</td>
     <td><button class="del">Xóa</button></td></tr>';
 }
 ?>

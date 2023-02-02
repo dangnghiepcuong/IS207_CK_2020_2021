@@ -1,5 +1,14 @@
 $(document).ready(function () {
-    var CongViec = function(){
+
+    var TinhTien = function () {
+        ThanhTien = 0
+        $('table').find('.don-gia').each(function () {
+            ThanhTien += parseInt($(this).text())
+        })
+        $('#tien').val(ThanhTien)
+    }
+
+    var CongViec = function () {
         so = $('#so').find('option:selected').text()
         nhan = $('#nhan').val();
 
@@ -12,11 +21,12 @@ $(document).ready(function () {
                 firstRow = $('#cong-viec').find('tr:first')
                 $('#cong-viec').html(firstRow)
                 $('#cong-viec').append(data)
+                TinhTien();
             }
         })
     }
 
-    $('#nhan').change(function(){
+    $('#nhan').change(function () {
         nhan = $('#nhan').val();
 
         $.ajax({
@@ -30,26 +40,17 @@ $(document).ready(function () {
             }
         })
     })
-    
-    $('#so').change(function(){
+
+    $('#so').change(function () {
         CongViec()
     })
 
-    var TinhTien = function(){
-        ThanhTien = 0
-        $('.don-gia').each(function(){
-            ThanhTien += parseInt($(this).text())
-        })
-        $('#tien').val(ThanhTien)
-    }
-    TinhTien();
-
-    $('.del').click(function(){
+    $('table').on('click', '.del', function () {
         $(this).parent().parent().remove()
         TinhTien();
     })
 
-    $('#btn-thanh-toan').click(function(){
+    $('#btn-thanh-toan').click(function () {
         ThanhTien = $('#tien').val()
         so = $('#so').find('option:selected').text()
         alert(ThanhTien)
@@ -59,7 +60,7 @@ $(document).ready(function () {
             url: 'Thanh_Toan.php',
             type: 'POST',
             data: { tien: ThanhTien, so: so },
-            success: function(){
+            success: function () {
                 alert("Thanh toán thành công!")
             }
         })
