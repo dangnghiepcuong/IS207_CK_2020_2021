@@ -46,7 +46,17 @@ $(document).ready(function () {
     })
 
     $('table').on('click', '.del', function () {
-        $(this).parent().parent().remove()
+        thisRow = $(this).parent().parent()
+        cv = thisRow.find('td:first').attr('class')
+        mabd = thisRow.attr('class')
+        $.ajax({
+            cache: false,
+            url: 'Xoa_Cong_Viec.php',
+            type: 'POST',
+            data: { mabd: mabd, cv: cv }
+        })
+        
+        thisRow.remove()
         TinhTien();
     })
 
