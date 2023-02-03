@@ -11,6 +11,8 @@ if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
 
+// echo $_POST['ma'] . $_POST['ten'] . $_POST['dc'] . $_POST['dt'];
+
 $stmt = $conn->prepare("insert into KHACHHANG values(?, ?, ?, ?)");
 $stmt->bind_param('ssss', $_POST['ma'], $_POST['ten'], $_POST['dc'], $_POST['dt']);
 $stmt->execute();
