@@ -53,13 +53,13 @@ $(document).ready(function () {
     $('#btn-thanh-toan').click(function () {
         ThanhTien = $('#tien').val()
         so = $('#so').find('option:selected').text()
-        alert(ThanhTien)
-        alert(so)
+        nhan = $('#nhan').val();
+
         $.ajax({
             cache: false,
             url: 'Thanh_Toan.php',
             type: 'POST',
-            data: { tien: ThanhTien, so: so },
+            data: { tien: ThanhTien, so: so, nhan: nhan },
             success: function () {
                 alert("Thanh toán thành công!")
             }
